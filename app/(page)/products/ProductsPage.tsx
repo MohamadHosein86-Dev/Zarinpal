@@ -1,4 +1,5 @@
 import FeaturesComparison from "./components/FeaturesComparison";
+import IntegrationSection from "./components/IntegrationSection";
 import ProductsGrid from "./components/ProductsGrid";
 import ProductsHero from "./components/ProductsHero";
 
@@ -9,6 +10,7 @@ export default function ProductsPage() {
       <ProductsGrid />
       <FeaturesComparison />
       <ProductsGrid />
+      <IntegrationSection />
     </div>
   );
 }
