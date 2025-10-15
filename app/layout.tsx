@@ -5,6 +5,7 @@ import Header from "./components/layout/header/Header";
 import RegisterSW from "./features/service-worker/RegisterSW";
 import { ThemeProvider } from "./features/theme/theme-provider";
 import { Suspense } from "react";
+import Footer from "./components/layout/footer/Footer";
 
 // فقط فونت فارسی
 const vazirmatn = Vazirmatn({
@@ -32,6 +33,7 @@ export default function RootLayout({
           <Suspense fallback={<div>Loading...</div>}>
             <Header />
             {children}
+            <Footer />
           </Suspense>
         </ThemeProvider>
       </body>
