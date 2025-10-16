@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import PricingCards from "./components/PricingCard";
 import ComparisonTable from "./components/ComparisonTable";
 import FAQ from "./components/FAQ";
+import TrustIndicators from "./components/TrustIndicators";
 
 export default function PricingPage() {
   return (
@@ -11,6 +12,7 @@ export default function PricingPage() {
       <PricingCards />
       <ComparisonTable />
       <FAQ />
+      <TrustIndicators />
     </section>
   );
 }
