@@ -1,6 +1,7 @@
 import { Button } from "@/app/components/ui/button";
-import { Badge, Star, Zap } from "lucide-react";
+import { Star, Zap } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "@/app/components/ui/badge";
 
 const ProductsHero = () => {
   return (

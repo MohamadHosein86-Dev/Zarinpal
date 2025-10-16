@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, Rocket, Sparkles, PlayCircle, FileX2, LifeBuoy, Badge } from "lucide-react";
+import { ArrowLeft, Rocket, Sparkles, PlayCircle, FileX2, LifeBuoy } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { Badge } from "@/app/components/ui/badge";
 
 const CallToActionSection = () => {
   return (

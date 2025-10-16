@@ -1,7 +1,8 @@
-import { Badge, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { integrationFeatures } from "./data";
 import { Button } from "@/app/components/ui/button";
+import { Badge } from "@/app/components/ui/badge";
 
 const IntegrationSection = () => {
   return (

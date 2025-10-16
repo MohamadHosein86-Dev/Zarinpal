@@ -1,8 +1,9 @@
-import { ArrowLeft, Badge, CheckCircle, CreditCard } from "lucide-react";
-import Link from "next/link";
+import { ArrowLeft, CheckCircle, CreditCard } from "lucide-react";
+import { Badge } from "@/app/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { Button } from "@/app/components/ui/button";
 import { productIcons, products } from "./data";
+import Link from "next/link";
 
 const ProductsGrid = () => {
   return (

@@ -1,5 +1,6 @@
+import { Badge } from "@/app/components/ui/badge";
 import { Switch } from "@/app/components/ui/switch";
-import { Badge, Calculator } from "lucide-react";
+import { Calculator } from "lucide-react";
 
 export default function Hero() {
   return (
