@@ -4,6 +4,7 @@ import PricingCards from "./components/PricingCard";
 import ComparisonTable from "./components/ComparisonTable";
 import FAQ from "./components/FAQ";
 import TrustIndicators from "./components/TrustIndicators";
+import CTA from "./components/CTA";
 
 export default function PricingPage() {
   return (
@@ -13,6 +14,7 @@ export default function PricingPage() {
       <ComparisonTable />
       <FAQ />
       <TrustIndicators />
+      <CTA />
     </section>
   );
 }
