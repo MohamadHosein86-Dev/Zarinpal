@@ -5,6 +5,7 @@ import CompanyValues from "./components/CompanyValues";
 import Timeline from "./components/Timeline";
 import TeamSection from "./components/TeamSection";
 import OfficeLocation from "./components/OfficeLocation";
+import CTASection from "./components/CTASection";
 
 export default function AboutPage() {
   return (
@@ -15,6 +16,7 @@ export default function AboutPage() {
       <Timeline />
       <TeamSection />
       <OfficeLocation />
+      <CTASection />
     </section>
   );
 }
