@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { Briefcase, Info, Linkedin, Twitter, User } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { teamMembers } from "@/app/lib/data";
 import { Card, CardContent } from "@/app/components/ui/card";
 
 const TeamSection = () => {
   const [filter, setFilter] = useState("all");
-  const positions = Array.from(new Set(teamMembers.map((m) => m.position)));
-  const filteredMembers = filter === "all" ? teamMembers : teamMembers.filter((m) => m.position === filter);
+  const filteredMembers = filter === "all" ? teamMembers : teamMembers.filter((res) => res.position === filter);
+  const positions = useMemo(() => [...new Set(teamMembers.map((res) => res.position))], [teamMembers]);
 
   return (
     <section className="py-20 bg-gradient-to-br from-muted/50 to-card">
