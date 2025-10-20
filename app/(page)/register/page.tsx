@@ -7,7 +7,7 @@ import RegsterForm from "./components/RegsterForm";
 
 export default function RegisterPage() {
   return (
-    <section>
+    <section className="min-h-screen relative overflow-hidden">
       <BgRegsterPage />
       <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
         <div className="w-full max-w-2xl">

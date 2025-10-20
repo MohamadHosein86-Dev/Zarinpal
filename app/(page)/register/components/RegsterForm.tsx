@@ -2,24 +2,24 @@
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
+import { Label } from "@/app/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select";
 import { User, Mail, Phone, Building, Eye, EyeOff, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function RegsterForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     control
   } = useForm();
 
-  const onSubmit = () => {};
+  const onSubmit = async (Data) => {};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -34,7 +34,7 @@ export default function RegsterForm() {
             <Input
               {...register("firstName", {
                 required: "نام الزامی است",
-                minLength: { value: 8, message: "حداقل 8 کاراکتر" }
+                minLength: { value: 3, message: "حداقل 3 کاراکتر" }
               })}
               id="firstName"
               placeholder="نام خود را وارد کنید"
@@ -51,7 +51,7 @@ export default function RegsterForm() {
           <Input
             {...register("lastName", {
               required: "نام خوانوادگی الزامی است",
-              minLength: { value: 8, message: "حداقل 8 کاراکتر" }
+              minLength: { value: 3, message: "حداقل 3 کاراکتر" }
             })}
             id="lastName"
             placeholder="نام خانوادگی"
@@ -135,6 +135,7 @@ export default function RegsterForm() {
           <Controller
             name="businessType"
             control={control}
+            defaultValue="technical"
             rules={{ required: "انتخاب نوع کسب‌وکار الزامی است" }}
             render={({ field }) => (
               <Select onValueChange={field.onChange} value={field.value}>
