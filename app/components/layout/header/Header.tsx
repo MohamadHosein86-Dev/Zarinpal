@@ -18,7 +18,7 @@ export default function Header() {
   const { theme } = useTheme();
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/dashboard")) return null;
+  if (pathname?.startsWith("/admin")) return null;
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-xl border-b border-border shadow-sm">
