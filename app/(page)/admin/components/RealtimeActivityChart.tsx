@@ -1,8 +1,8 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
-import { LineChart } from "lucide-react";
-import { Activity } from "react";
+import { Activity } from "lucide-react"; // درست
 import { motion } from "framer-motion";
-import { CartesianGrid, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { LineChart, ResponsiveContainer, CartesianGrid, Line, Tooltip, XAxis, YAxis } from "recharts"; // درست
 
 const realtimeData = [
   { time: "09:00", value: 120 },

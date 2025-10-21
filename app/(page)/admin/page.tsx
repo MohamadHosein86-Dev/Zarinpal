@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
 import DashboardAnalytics from "./components/DashboardAnalytics";
+import RealtimeActivityChart from "./components/RealtimeActivityChart";
+import RecentTransactionsTable from "./components/RecentTransactionsTable ";
 
 const AdminHeader = dynamic(() => import("./components/AdminHeader"));
 const Hero = dynamic(() => import("./components/Hero"));
@@ -9,10 +11,13 @@ export default function AdminPage() {
   return (
     <section className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50">
       <AdminHeader />
+
       <div className="container mx-auto px-4 py-8">
         <Hero />
         <StaticCart />
         <DashboardAnalytics />
+        <RealtimeActivityChart />
+        <RecentTransactionsTable />
       </div>
     </section>
   );
