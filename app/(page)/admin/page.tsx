@@ -1,8 +1,9 @@
 import dynamic from "next/dynamic";
+import DashboardAnalytics from "./components/DashboardAnalytics";
 
 const AdminHeader = dynamic(() => import("./components/AdminHeader"));
 const Hero = dynamic(() => import("./components/Hero"));
-const AdminBox = dynamic(() => import("./components/AdminBox"));
+const StaticCart = dynamic(() => import("./components/StaticCart"));
 
 export default function AdminPage() {
   return (
@@ -10,7 +11,8 @@ export default function AdminPage() {
       <AdminHeader />
       <div className="container mx-auto px-4 py-8">
         <Hero />
-        <AdminBox />
+        <StaticCart />
+        <DashboardAnalytics />
       </div>
     </section>
   );
