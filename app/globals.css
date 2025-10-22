@@ -202,3 +202,9 @@
   scrollbar-width: thin;
   scrollbar-color: #1447e6 #ffff;
 }
+.show {
+    @apply !visible !opacity-100;
+}
+.menu-active {
+    @apply !right-0;
+}
