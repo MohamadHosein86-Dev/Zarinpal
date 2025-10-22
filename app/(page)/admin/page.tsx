@@ -1,12 +1,11 @@
 "use client";
 import dynamic from "next/dynamic";
-import DashboardAnalytics from "./components/DashboardAnalytics";
-import RealtimeActivityChart from "./components/RealtimeActivityChart";
-import RecentTransactionsTable from "./components/RecentTransactionsTable ";
 import { Button } from "@/app/components/ui/button";
 import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
-
+const RecentTransactionsTable = dynamic(() => import("./components/RecentTransactionsTable "));
+const RealtimeActivityChart = dynamic(() => import("./components/RealtimeActivityChart"));
+const DashboardAnalytics = dynamic(() => import("./components/DashboardAnalytics"));
 const AdminHeader = dynamic(() => import("./components/AdminHeader"));
 const Hero = dynamic(() => import("./components/Hero"));
 const StaticCart = dynamic(() => import("./components/StaticCart"));
