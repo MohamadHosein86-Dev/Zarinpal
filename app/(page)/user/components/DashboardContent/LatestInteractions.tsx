@@ -5,13 +5,13 @@ import Link from "next/link";
 
 export default function LatestInteractions() {
   return (
-    <div className="grid grid-cols-12 lg:gap-7">
+    <div className="grid grid-cols-12 mb-2 lg:gap-7">
       {/* tickets */}
-      <section className="lg:col-span-6 col-span-full bg-white p-5 lg:rounded-lg">
+      <section className="lg:col-span-6 border-2 border-black/5 shadow-sm col-span-full bg-white p-5 lg:rounded-lg">
         {/* title */}
         <div className="flex items-center justify-between mb-6">
           <span className="font-danaBold">تیکت های اخیر</span>
-          <Link href="/courses" className="btn btn-primary btn-xs bg-black/5 text-black/70 py-2.5">
+          <Link href="/courses">
             <FaArrowLeftLong className="size-3.5" />
           </Link>
         </div>
@@ -42,10 +42,10 @@ export default function LatestInteractions() {
         </div>
       </section>
       {/* Q & A */}
-      <section className="lg:col-span-6 col-span-full bg-white p-5 lg:rounded-lg">
+      <section className="lg:col-span-6 border-2 border-black/5 shadow-sm col-span-full bg-white p-5 lg:rounded-lg">
         <div className="flex items-center justify-between mb-6">
           <span className="font-bold">پرسش های اخیر</span>
-          <Link href="/courses" className="btn btn-primary btn-xs bg-black/5 text-black/70 py-2.5">
+          <Link href="/#">
             <FaArrowLeftLong className="size-3.5" />
           </Link>
         </div>

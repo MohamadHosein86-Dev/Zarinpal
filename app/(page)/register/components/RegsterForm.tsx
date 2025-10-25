@@ -19,7 +19,9 @@ export default function RegsterForm() {
     control
   } = useForm();
 
-  const onSubmit = async (Data) => {};
+  const onSubmit = async (Data) => {
+    console.log(Data);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

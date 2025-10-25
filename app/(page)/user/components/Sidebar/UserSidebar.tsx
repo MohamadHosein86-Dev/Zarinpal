@@ -1,27 +1,23 @@
-import { RiSettings4Line } from "react-icons/ri";
+import { RiEdit2Line } from "react-icons/ri";
 import { TbLogout2 } from "react-icons/tb";
 import { BiHomeAlt2 } from "react-icons/bi";
-import { BiReceipt } from "react-icons/bi";
-import { RiMapPinLine } from "react-icons/ri";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
-import { AiOutlineHeart } from "react-icons/ai";
 import { MdOutlineManageAccounts } from "react-icons/md";
+
 import Link from "next/link";
 import * as motion from "motion/react-client";
 import AsideMenuItem from "./UserSidebarMenuItem";
 
 const AsideMenuItems = [
+  { id: 4, title: " پروفایل ", link: "/user", icon: HiOutlineChatAlt2 },
+  { id: 6, title: "جزئیات حساب", link: "/user/acount", icon: MdOutlineManageAccounts },
   { id: 1, title: "خانه", link: "/", icon: BiHomeAlt2 },
-  { id: 2, title: "سفارش های من", link: "/", icon: BiReceipt },
-  { id: 3, title: " آدرس ها", link: "/", icon: RiMapPinLine },
-  { id: 4, title: "تیکت های پشتیبانی", link: "/", icon: HiOutlineChatAlt2 },
-  { id: 5, title: "علاقه مندی ها", link: "/", icon: AiOutlineHeart },
-  { id: 6, title: "جزئیات حساب", link: "/", icon: MdOutlineManageAccounts }
+  { id: 7, title: "خروج", link: "/logout", icon: TbLogout2 }
 ];
 
 export default function UserSidebar() {
   return (
-    <aside className="navigation -right-65 sm:-right-70 lg:!h-[calc(100vh-64px)] fixed top-0 bottom-0 z-50 md:static lg:sticky lg:top-5 overflow-y-auto w-65 sm:w-70 md:w-66 lg:w-70 shrink-0 bg-white md:border-l md:border-l-black/10 px-7 py-5 lg:rounded-lg max-md:transition-all max-md:duration-300">
+    <motion.aside initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="navigatio shadow-sm border-1 border-black/5 lg:!h-[calc(100vh-64px)] -right-65 sm:-right-70  fixed top-0 bottom-0 z-50 md:static lg:sticky lg:top-5 overflow-y-auto w-65 sm:w-70 md:w-66 lg:w-70 shrink-0 bg-white px-7 py-5 lg:rounded-lg max-md:transition-all max-md:duration-300">
       <div className="flex items-center justify-between pb-5 mb-5 border-b border-b-black/5">
         <div className="flex items-center gap-x-2">
           <img className="size-11 rounded-full" src="https://secure.gravatar.com/avatar/305d06cbd488be05e4d58cce3723d4d5?s=96&amp;d=mm&amp;r=g" loading="lazy" />
@@ -32,13 +28,8 @@ export default function UserSidebar() {
         </div>
         <div className="flex items-center gap-x-3">
           <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
-            <Link href="/">
-              <RiSettings4Line className="size-5 text-black/50 hover:text-black transition-colors cursor-pointer" />
-            </Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
-            <Link href="/">
-              <TbLogout2 className="size-5 text-black/50 hover:text-red-500 transition-colors cursor-pointer" />
+            <Link href="/user/acount">
+              <RiEdit2Line className="size-5 text-[#19bfd3] transition-colors cursor-pointer" />
             </Link>
           </motion.div>
         </div>
@@ -48,6 +39,6 @@ export default function UserSidebar() {
           <AsideMenuItem key={item.id} {...item} />
         ))}
       </div>
-    </aside>
+    </motion.aside>
   );
 }

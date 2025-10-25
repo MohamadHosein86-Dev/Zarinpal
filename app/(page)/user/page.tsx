@@ -1,14 +1,17 @@
-import React from "react";
-import UserSidebar from "./components/Sidebar/UserSidebar";
+"use clinet";
+import dynamic from "next/dynamic";
+import HeroUser from "./components/DashboardContent/HeroUser";
 import DashboardContent from "./components/DashboardContent/DashboardContent";
+const StaticCartUser = dynamic(() => import("./components/DashboardContent/StaticCartUser"));
+const DashboardAnalyticsUser = dynamic(() => import("./components/DashboardContent/DashboardAnalytics"));
 
 export default function UserPage() {
   return (
-    <section className="bg-black/5">
-      <div className="relative flex lg:items-start lg:gap-x-8 lg:p-9 max-w-[1440px] mx-auto">
-        <UserSidebar />
-        <DashboardContent />
-      </div>
+    <section>
+      <HeroUser acount={false} />
+      <StaticCartUser />
+      <DashboardAnalyticsUser />
+      <DashboardContent />
     </section>
   );
 }

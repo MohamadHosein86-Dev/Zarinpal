@@ -27,12 +27,9 @@ const trustItems = [
   }
 ];
 
-const TrustIndicators = () => {
+const TrustIndicatorsUser = () => {
   return (
-    <section className="relative py-28 overflow-hidden">
-      {/* fancy background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-muted/50 to-card/50 bg-[url('/images/grid.png')] opacity-10"></div>
-
+    <section className="relative pt-6 pb-28 overflow-hidden">
       <div className="container relative z-10 mx-auto px-6">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center"
@@ -74,4 +71,4 @@ const TrustIndicators = () => {
   );
 };
 
-export default TrustIndicators;
+export default TrustIndicatorsUser;
