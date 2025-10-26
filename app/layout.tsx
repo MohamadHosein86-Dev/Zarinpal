@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import Header from "./components/layout/header/Header";
-import RegisterSW from "./features/service-worker/RegisterSW";
 import { ThemeProvider } from "./features/theme/theme-provider";
 import { Suspense } from "react";
 import Footer from "./components/layout/footer/Footer";
@@ -28,7 +27,6 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <body className={` ${vazirmatn.className} antialiased`}>
-        <RegisterSW />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange={false}>
           <Suspense fallback={<div>Loading...</div>}>
             <Header />

@@ -17,11 +17,7 @@ const getStatusBadge = (status: string) => {
     case "در انتظار":
       return <Badge className="bg-amber-100 text-amber-800 border-amber-200 cursor-pointer">در انتظار</Badge>;
     default:
-      return (
-        <Badge variant="secondary" className="cursor-pointer">
-          {status}
-        </Badge>
-      );
+      return <Badge className="cursor-pointer">{status}</Badge>;
   }
 };
 
