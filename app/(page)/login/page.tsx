@@ -17,9 +17,7 @@ export default function LoginPage() {
     register
   } = useForm();
 
-  const onsubmit = async (data) => {
-    console.log(data);
-  };
+  const onsubmit = async () => {};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 p-4 relative overflow-hidden">

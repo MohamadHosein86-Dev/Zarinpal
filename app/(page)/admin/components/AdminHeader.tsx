@@ -40,7 +40,7 @@ export default function AdminHeader() {
           <div className="flex items-center gap-4">
             <motion.div className="relative hidden md:block" whileHover={{ scale: 1.02 }}>
               <Search className="absolute right-3 top-3 h-4 w-4 text-slate-400" />
-              <Input placeholder="جستجو در تراکنش‌ها..." defaultValue={inputRef.current?.value} ref={inputRef.current} onChange={handlechange} className="w-64 pr-10 bg-white/50 border-slate-200 focus:bg-white transition-all duration-300 cursor-text" />
+              <Input placeholder="جستجو در تراکنش‌ها..." defaultValue={inputRef.current?.value} ref={inputRef} onChange={handlechange} className="w-64 pr-10 bg-white/50 border-slate-200 focus:bg-white transition-all duration-300 cursor-text" />
             </motion.div>
 
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>

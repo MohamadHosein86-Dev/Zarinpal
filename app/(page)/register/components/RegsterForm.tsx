@@ -22,7 +22,7 @@ export default function RegsterForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
     control
-  } = useForm();
+  } = useForm<RegisterFormData>();
 
   const onSubmit = async (Data: RegisterFormData) => {
     const { confirmPassword, firstName, lastName, email, phone, businessName, businessType, password, otp } = Data;
