@@ -6,13 +6,18 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { ChangeEvent, useRef } from "react";
 import { Bell, LogOut, Search, Settings } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 
 export default function AdminHeader() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
   const { theme } = useTheme();
+  function handlechange(x: ChangeEvent<HTMLInputElement>) {
+    if (inputRef.current) {
+      inputRef.current.value = x.target.value;
+    }
+  }
   return (
     <motion.header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60 shadow-sm" initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
       <div className="container mx-auto px-4 py-4">
@@ -35,7 +40,7 @@ export default function AdminHeader() {
           <div className="flex items-center gap-4">
             <motion.div className="relative hidden md:block" whileHover={{ scale: 1.02 }}>
               <Search className="absolute right-3 top-3 h-4 w-4 text-slate-400" />
-              <Input placeholder="جستجو در تراکنش‌ها..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-64 pr-10 bg-white/50 border-slate-200 focus:bg-white transition-all duration-300 cursor-text" />
+              <Input placeholder="جستجو در تراکنش‌ها..." defaultValue={inputRef.current?.value} ref={inputRef.current} onChange={handlechange} className="w-64 pr-10 bg-white/50 border-slate-200 focus:bg-white transition-all duration-300 cursor-text" />
             </motion.div>
 
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>

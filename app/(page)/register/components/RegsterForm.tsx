@@ -1,19 +1,21 @@
 "use client";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
-import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select";
 import { User, Mail, Phone, Building, Eye, EyeOff, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
-import { regester } from "@/app/services/api";
+import { otpcode, regester, resendOtp } from "@/app/services/api";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function RegsterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [step, setStep] = useState("regster");
-  const [otp, setOtp] = useState(null);
+  const [otpCode, setOtp] = useState<number | null>(null);
+  const router = useRouter();
 
   const {
     register,
@@ -22,13 +24,24 @@ export default function RegsterForm() {
     control
   } = useForm();
 
-  const onSubmit = async () => {
-    /*   const { confirmPassword, firstName, lastName, email, phone, businessName, businessType, password } = Data;
+  const onSubmit = async (Data: RegisterFormData) => {
+    const { confirmPassword, firstName, lastName, email, phone, businessName, businessType, password, otp } = Data;
     if (password && confirmPassword) {
-      const res = await regester({ firstName, lastName, email, phone, businessName, businessType, password });
+      await regester({ firstName, lastName, email, phone, businessName, businessType, password });
       setStep("otp");
-      setOtp(res.otp);
-    } */
+
+      const res = await resendOtp({ phone });
+      setOtp(res.CodeOtp);
+      console.log(res.CodeOtp);
+    }
+  };
+  const verifyOtp = async (Data: RegisterFormData) => {
+    const { confirmPassword, phone, password, otp } = Data;
+    if (password && confirmPassword) {
+      const CodeOtp = otp as string;
+      await otpcode({ phone, CodeOtp });
+      router.push("/user");
+    }
   };
 
   return (
@@ -266,52 +279,32 @@ export default function RegsterForm() {
         </form>
       )}
       {step === "otp" && (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-white font-medium">
-                ایمیل *
+        <form onSubmit={handleSubmit(verifyOtp)} className="space-y-6">
+          <div>
+            <div className="  space-y-2">
+              <Label htmlFor="email" className="text-white flex justify-center  text-xl font-medium">
+                کد تایید *
               </Label>
-              <div className="relative">
-                <Mail className="absolute right-3 top-3 h-4 w-4 text-white/50" />
-                <Input
-                  {...register("email", {
-                    required: " ایمیل الزامی است",
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "ایمیل معتبر نیست"
-                    }
-                  })}
-                  id="email"
-                  type="email"
-                  placeholder="example@domain.com"
-                  className="pr-10 bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-emerald-400 focus:ring-emerald-400/20"
-                  required
-                />
+              <div>
+                <div className=" relative inline mx-auto ">
+                  <Mail className="absolute right-3 top-3 h-4 w-4 text-white/50" />
+                  <Input
+                    {...register("otp", {
+                      required: "کد تایید الزامی است",
+                      pattern: {
+                        value: /^[0-9]{6}$/,
+                        message: "کد تایید باید شامل ۶ رقم باشد"
+                      }
+                    })}
+                    id="email"
+                    type="text"
+                    placeholder="12345"
+                    className="pr-10 w-full  py-5 bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-emerald-400 focus:ring-emerald-400/20"
+                    required
+                  />
+                </div>
+                {<p className="text-red-400 text-sm">{errors.email?.message as string}</p>}
               </div>
-              {<p className="text-red-400 text-sm">{errors.email?.message as string}</p>}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone" className="text-white font-medium">
-                شماره موبایل *
-              </Label>
-              <div className="relative">
-                <Phone className="absolute right-3 top-3 h-4 w-4 text-white/50" />
-                <Input
-                  {...register("phone", {
-                    required: "شماره تلفن الزامی است",
-                    pattern: {
-                      value: /^(?:\+98|0)?9\d{9}$/,
-                      message: "شماره موبایل معتبر نیست (مثلاً 09123456789)"
-                    }
-                  })}
-                  id="phone"
-                  placeholder="۰۹۱۲۳۴۵۶۷۸۹"
-                  className="pr-10 bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-emerald-400 focus:ring-emerald-400/20"
-                  required
-                />
-              </div>
-              {<p className="text-red-400 text-sm">{errors.phone?.message as string}</p>}
             </div>
           </div>
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>

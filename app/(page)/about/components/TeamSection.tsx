@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/app/components/ui/card";
 const TeamSection = () => {
   const [filter, setFilter] = useState("all");
   const filteredMembers = filter === "all" ? teamMembers : teamMembers.filter((res) => res.position === filter);
-  const positions = useMemo(() => [...new Set(teamMembers.map((res) => res.position))], [teamMembers]);
+  const positions = useMemo(() => teamMembers.map((res) => res.position), [teamMembers]);
 
   return (
     <section className="py-20 bg-gradient-to-br from-muted/50 to-card">
