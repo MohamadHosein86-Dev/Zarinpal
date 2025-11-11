@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { prisma } from "@/app/lib/prisma";
+import { Prisma } from "@prisma/client";
 
 export async function POST(req: Request) {
   try {
@@ -29,12 +30,11 @@ export async function POST(req: Request) {
       success: true,
       message: "ثبت‌نام موفق. لطفا شماره تلفن را برای دریافت کد OTP ارسال کنید.",
     });
-  } catch (error:any) {
-    if (error.code === "P2002") {
-      return NextResponse.json({ error: "این ایمیل یا شماره تلفن قبلاً ثبت شده است" }, { status: 400 });
-    }
-
-    console.error("❌ خطا در ثبت نام:", error);
-    return NextResponse.json({ error: "خطا در سرور" }, { status: 500 });
+  } catch (error: unknown) {
+  if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+    return NextResponse.json({ error: "این ایمیل یا شماره تلفن قبلاً ثبت شده است" }, { status: 400 });
   }
+  return NextResponse.json({ error: "خطا در سرور" }, { status: 500 });
+}
+
 }

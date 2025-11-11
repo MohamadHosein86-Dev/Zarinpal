@@ -1,36 +1,33 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { jwtVerify } from 'jose';
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function middleware(req: NextRequest) {
+export default function middleware(req:NextRequest) {
+  const userPage = "/user" ;
+  const adminPage = "/admin" ;
+  const authPages  = ["/login","/register"] ;
+  const {pathname}=req.nextUrl ;
+
+  const protectedUser = pathname.includes(userPage);
+  const protectedAdmin = pathname.includes(adminPage);
+  const protectedAuthRout  = authPages.some((res)=>pathname.includes(res))
+
   const token = req.cookies.get("token")?.value;
-  console.log("All cookies:", req.cookies);
+  const admintoken = req.cookies.get("admin_token")?.value;
 
-
-  const protectedRoutes = ["/admin", "/user"];
-  const isProtected = protectedRoutes.some((route) =>
-    req.nextUrl.pathname.startsWith(route)
-  );
-
-  if (!isProtected) {
+  if(!protectedUser && !protectedAuthRout && !protectedAdmin){
     return NextResponse.next();
+  } 
+  if(protectedAuthRout){
+    if(token || admintoken)
+   return NextResponse.redirect(new URL("/",req.url))
   }
-
-  if (!token) {
-    console.log("No token, redirecting to login");
-    return NextResponse.redirect(new URL("/login", req.url));
+  if(protectedUser ){
+    if(!token) return NextResponse.redirect(new URL("/login",req.url))
   }
-
-  try {
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-    const { payload } = await jwtVerify(token, secret);
-    console.log("User data:", payload);
-    return NextResponse.next();
-  } catch (err) {
-    console.error("Invalid token:", err);
-    return NextResponse.redirect(new URL("/login", req.url));
+  if(protectedAdmin){
+    if(!admintoken) return NextResponse.redirect(new URL("/login",req.url))
   }
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/user/:path*"],
+  matcher: ["/admin/:path*", "/user/:path*", "/login", "/register"],
 };

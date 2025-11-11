@@ -1,12 +1,12 @@
 "use client";
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
-import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/app/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/app/components/ui/table";
 import { dashboardData } from "@/app/lib/data";
 import { formatCurrency } from "@/app/lib/helpfunc";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { motion } from "framer-motion";
-import { Badge, CheckCircle, Clock, Download, Eye, Filter, MoreHorizontal, Table, XCircle } from "lucide-react";
+import { Badge, CheckCircle, Clock, Download, Eye, MoreHorizontal, XCircle } from "lucide-react";
 
 const getStatusBadge = (status: string) => {
   switch (status) {
@@ -41,12 +41,6 @@ export default function RecentTransactionsTable() {
           <div className="flex items-center justify-between">
             <CardTitle className="text-xl font-bold bg-gradient-to-r from-slate-700 to-slate-900 bg-clip-text text-transparent">تراکنش‌های اخیر</CardTitle>
             <div className="flex gap-2">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="outline" size="sm" className="cursor-pointer hover:bg-slate-50 bg-transparent">
-                  <Filter className="h-4 w-4 ml-2" />
-                  فیلتر
-                </Button>
-              </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button variant="outline" size="sm" className="cursor-pointer hover:bg-slate-50 bg-transparent">
                   <Download className="h-4 w-4 ml-2" />

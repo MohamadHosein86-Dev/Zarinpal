@@ -8,16 +8,27 @@ import { Label } from "@/app/components/ui/label";
 import { Eye, EyeOff, Rocket, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { login } from "@/app/services/api";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const {
     handleSubmit,
     formState: { errors, isSubmitting },
     register
-  } = useForm();
+  } = useForm<RegisterFormData>();
 
-  const onsubmit = async () => {};
+  const onsubmit = async (Data: RegisterFormData) => {
+    const { email, password } = Data;
+    const res = await login({ email, password });
+    if (res.role === "USER") {
+      return router.push("/user");
+    } else {
+      return router.push("/admin");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 p-4 relative overflow-hidden">
@@ -54,6 +65,7 @@ export default function LoginPage() {
                     className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-emerald-400 focus:ring-emerald-400/20"
                     required
                   />
+                  {<p className="text-red-400 text-sm">{errors.email?.message as string}</p>}
                 </div>
 
                 {/* Password */}
@@ -74,6 +86,8 @@ export default function LoginPage() {
                     className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-emerald-400 focus:ring-emerald-400/20 pr-10"
                     required
                   />
+                  {<p className="text-red-400 text-sm">{errors.password?.message as string}</p>}
+
                   <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute left-3 top-[40px] transform -translate-y-1/2 text-white/50 hover:text-white cursor-pointer">
                     {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                   </button>

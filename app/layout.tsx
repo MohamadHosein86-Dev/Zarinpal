@@ -5,6 +5,7 @@ import Header from "./components/layout/header/Header";
 import { ThemeProvider } from "./features/theme/theme-provider";
 import { Suspense } from "react";
 import Footer from "./components/layout/footer/Footer";
+import ReactQueryProvider from "./providers/ReactQueryProvider";
 
 // فقط فونت فارسی
 const vazirmatn = Vazirmatn({
@@ -30,7 +31,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange={false}>
           <Suspense fallback={<div>Loading...</div>}>
             <Header />
-            {children}
+            <ReactQueryProvider>{children}</ReactQueryProvider>
             <Footer />
           </Suspense>
         </ThemeProvider>

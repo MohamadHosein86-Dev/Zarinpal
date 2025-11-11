@@ -9,14 +9,22 @@ import { useTheme } from "next-themes";
 import { ChangeEvent, useRef } from "react";
 import { Bell, LogOut, Search, Settings } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
+import { logoutAdmin } from "@/app/services/api";
+import { useRouter } from "next/navigation";
 
 export default function AdminHeader() {
+  const { push } = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const { theme } = useTheme();
+
   function handlechange(x: ChangeEvent<HTMLInputElement>) {
     if (inputRef.current) {
       inputRef.current.value = x.target.value;
     }
+  }
+  async function handleLogout() {
+    await logoutAdmin();
+    return push("/");
   }
   return (
     <motion.header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60 shadow-sm" initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
@@ -32,7 +40,7 @@ export default function AdminHeader() {
               <h1 className="text-2xl font-heavy bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">داشبورد</h1>
               <p className="text-sm text-slate-600 flex items-center gap-2">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                خوش آمدید، علی رضایی
+                خوش آمدید
               </p>
             </div>
           </div>
@@ -40,7 +48,7 @@ export default function AdminHeader() {
           <div className="flex items-center gap-4">
             <motion.div className="relative hidden md:block" whileHover={{ scale: 1.02 }}>
               <Search className="absolute right-3 top-3 h-4 w-4 text-slate-400" />
-              <Input placeholder="جستجو در تراکنش‌ها..." defaultValue={inputRef.current?.value} ref={inputRef} onChange={handlechange} className="w-64 pr-10 bg-white/50 border-slate-200 focus:bg-white transition-all duration-300 cursor-text" />
+              <Input defaultValue={inputRef.current?.value} ref={inputRef} onChange={handlechange} className="w-64 pr-10 bg-white/50 border-slate-200 focus:bg-white transition-all duration-300 cursor-text" />
             </motion.div>
 
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -56,7 +64,7 @@ export default function AdminHeader() {
                   <Button variant="ghost" className="relative h-10 w-10 rounded-full cursor-pointer">
                     <Avatar className="h-10 w-10 ring-2 ring-blue-100">
                       <AvatarImage src="/persian-tech-manager.png" alt="علی رضایی" />
-                      <AvatarFallback className="bg-gray-500 text-white">ع.ر</AvatarFallback>
+                      <AvatarFallback className="bg-gray-500 text-white">ا.م</AvatarFallback>
                     </Avatar>
                   </Button>
                 </motion.div>
@@ -64,20 +72,20 @@ export default function AdminHeader() {
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">علی رضایی</p>
+                    <p className="text-sm font-medium leading-none"> ادمین </p>
                     <p className="text-xs leading-none text-muted-foreground">ali@example.com</p>
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer">
-                  <Settings className="ml-2 h-4 w-4" />
-                  <span>تنظیمات</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  <Link href="/" className="flex items-center w-full">
+                  <button onClick={handleLogout} className="flex items-center w-full">
                     <LogOut className="ml-2 h-4 w-4" />
                     <span>خروج</span>
-                  </Link>
+                  </button>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                  <Settings className="ml-2 h-4 w-4" />
+                  <span>تنظیمات</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
