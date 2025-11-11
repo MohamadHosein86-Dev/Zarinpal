@@ -46,8 +46,8 @@ export default function RegsterForm() {
     <section>
       {isSubmitting ? (
         <div className="relative text-center flex justify-center   max-w-[1480px] mx-auto">
-          <div className=" h-screen ">
-            <div className=" size-25 mt-80 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+          <div className=" h-100 ">
+            <div className=" size-25 mb-80 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
             <h1 className="text-blue-500  font-semibold mt-2 text-xl animate-pulse">لطفا صبر کنید...</h1>
           </div>
         </div>
